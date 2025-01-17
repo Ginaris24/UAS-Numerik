@@ -1,34 +1,36 @@
 import streamlit as st
 from PIL import Image
-from datetime import date
 
 # Konfigurasi Halaman
 st.set_page_config(
-    page_title="Aplikasi Streamlit Keren",
-    page_icon="🌟",
+    page_title="Portofolio Keren",
+    page_icon="💼",
     layout="wide",
 )
 
-# CSS Kustom untuk Tampilan yang Menarik
+# CSS untuk Tampilan Kustom
 st.markdown("""
     <style>
         body {
-            background-color: #0f2027;
-            background-image: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
-            color: white;
+            background: #1a1a1d;
             font-family: 'Segoe UI', sans-serif;
         }
-        h1 {
-            text-align: center;
+        h1, h2, h3, h4, h5 {
             color: #FFD700;
-            font-size: 50px;
+        }
+        .main-container {
+            background: #282828;
+            border-radius: 10px;
+            padding: 20px;
+            color: white;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
         }
         .stButton > button {
             background-color: #FFD700;
             color: black;
-            font-size: 18px;
+            border-radius: 5px;
             padding: 10px;
-            border-radius: 10px;
+            font-size: 16px;
         }
         .stButton > button:hover {
             background-color: #FFA500;
@@ -36,83 +38,72 @@ st.markdown("""
         }
         .footer {
             text-align: center;
+            color: #BBB;
             font-size: 14px;
             margin-top: 50px;
-            color: #BBB;
         }
     </style>
 """, unsafe_allow_html=True)
 
-# Header Utama
-st.markdown("<h1>🌟 Aplikasi Streamlit Keren 🌟</h1>", unsafe_allow_html=True)
+# Header
+st.markdown("<h1 style='text-align: center;'>💼 Portofolio Saya 💼</h1>", unsafe_allow_html=True)
 st.write("---")
 
-# Sidebar Navigasi
-st.sidebar.title("🔮 Navigasi")
-menu = st.sidebar.radio(
-    "Pilih Halaman:", 
-    ["Beranda", "Profil Pengguna", "Kalkulator Umur", "Galeri"]
-)
+# Tentang Saya
+st.header("📋 Tentang Saya")
+col1, col2 = st.columns([1, 2])
+with col1:
+    profile_img = "https://i.pinimg.com/736x/48/49/ba/4849ba2ea6517f805785071120cccc08.jpg"  # Ganti dengan URL atau path gambar lokal
+    st.image(profile_img, caption="Foto Profil", width=150)
+with col2:
+    st.markdown("""
+    Hai, nama saya **Player**.  
+    Saya seorang **Software Engineer** yang gemar membuat aplikasi modern,  
+    memecahkan masalah dengan teknologi, dan mengeksplorasi dunia pemrograman.  
+    """)
+st.write("---")
 
-# Halaman Beranda
-if menu == "Beranda":
-    st.image("https://via.placeholder.com/1200x400?text=Aplikasi+Keren", use_column_width=True)
-    st.markdown(
-        """
-        <div style="text-align: center; font-size: 24px; margin-top: 20px;">
-            Selamat datang di aplikasi Streamlit yang penuh gaya! 🌟  
-            Jelajahi fitur kami, temui desain modern, dan nikmati pengalaman interaktif.  
-        </div>
-        """, 
-        unsafe_allow_html=True
-    )
+# Keahlian
+st.header("🛠️ Keahlian")
+st.markdown("""
+- **Bahasa Pemrograman**: Python, JavaScript, C++
+- **Frameworks**: Django, React.js, Flask
+- **Tools**: Docker, Kubernetes, Git
+- **Database**: MySQL, PostgreSQL, MongoDB
+""")
+st.write("---")
 
-# Halaman Profil Pengguna
-elif menu == "Profil Pengguna":
-    st.subheader("📋 Tentang Anda")
-    col1, col2 = st.columns([1, 3])
-    with col1:
-        image = Image.open("profile_placeholder.png")  # Ganti dengan file foto Anda
-        st.image(image, caption="Foto Anda", width=200)
-    with col2:
-        st.markdown(
-            """
-            **Nama**: John Doe  
-            **Profesi**: Software Engineer  
-            **Hobi**: Membuat aplikasi keren, membaca, dan mendaki gunung  
-            **Kutipan Favorit**:  
-            > "Keep pushing your limits, because only then will you grow."  
-            """
-        )
-    st.balloons()
+# Proyek
+st.header("📂 Proyek Saya")
+col1, col2, col3 = st.columns(3)
+with col1:
+    st.image("https://i.pinimg.com/736x/24/7d/13/247d1354f2ce6f77c524c67a162aa4c6.jpg", caption="Proyek 1", use_container_width=True)
+    st.markdown("**Deskripsi:** Seorang programmer web bertanggung jawab untuk merancang, mengembangkan, dan memelihara aplikasi serta situs web. Mereka memiliki keterampilan dalam bahasa pemrograman web seperti HTML, CSS, JavaScript, dan framework seperti React, Django, atau Flask. Programmer web memastikan situs web berfungsi dengan baik, responsif, dan memiliki pengalaman pengguna yang menyenangkan.")
+    st.button("Lihat Proyek", key="proyek1")
+with col2:
+    st.image("https://i.pinimg.com/736x/6e/fa/87/6efa87d55f80267b24c8e7d951e61d14.jpg", caption="Proyek 2", use_container_width=True)
+    st.markdown("**Deskripsi:** Seorang programmer C++ mengembangkan perangkat lunak dengan menggunakan bahasa pemrograman C++, yang dikenal karena kemampuannya dalam menangani aplikasi yang membutuhkan performa tinggi, seperti permainan, sistem operasi, dan perangkat lunak yang mengelola sumber daya perangkat keras. Mereka menguasai konsep seperti manajemen memori, pengolahan data tingkat rendah, dan pengoptimalan kode.")
+    st.button("Lihat Proyek", key="proyek2")
+with col3:
+    st.image("https://i.pinimg.com/736x/0f/89/39/0f8939fc7bda5c155dde08127e452b8d.jpg", caption="Proyek 3", use_container_width=True)
+    st.markdown("**Deskripsi:** Seorang profesional multimedia menggabungkan berbagai bentuk media, seperti gambar, video, audio, dan animasi, untuk menciptakan pengalaman digital yang menarik. Mereka sering bekerja dengan perangkat lunak desain grafis dan animasi seperti Adobe Photoshop, Premiere Pro, dan After Effects untuk menghasilkan konten kreatif untuk website, video game, iklan, dan media sosial.")
+    st.button("Lihat Proyek", key="proyek3")
+st.write("---")
 
-# Halaman Kalkulator Umur
-elif menu == "Kalkulator Umur":
-    st.subheader("⏳ Hitung Umur Anda")
-    nama = st.text_input("Masukkan Nama Anda:", placeholder="Nama Anda...")
-    tanggal_lahir = st.date_input("Masukkan Tanggal Lahir Anda:")
-    if st.button("Hitung Umur"):
-        umur = date.today().year - tanggal_lahir.year
-        st.success(f"🎉 Halo, {nama}! Anda berumur {umur} tahun.")
-        st.snow()
-
-# Halaman Galeri
-elif menu == "Galeri":
-    st.subheader("📸 Galeri Keren")
-    st.write("Jelajahi koleksi gambar-gambar keren berikut:")
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        st.image("https://via.placeholder.com/300x200?text=Gambar+1", caption="Gambar 1")
-    with col2:
-        st.image("https://via.placeholder.com/300x200?text=Gambar+2", caption="Gambar 2")
-    with col3:
-        st.image("https://via.placeholder.com/300x200?text=Gambar+3", caption="Gambar 3")
+# Kontak
+st.header("📞 Kontak")
+st.markdown("""
+- **Email**: johndoe@example.com
+- **LinkedIn**: [linkedin.com/in/johndoe](https://linkedin.com/in/johndoe)
+- **GitHub**: [github.com/johndoe](https://github.com/johndoe)
+""")
+st.write("---")
 
 # Footer
 st.markdown(
     """
     <div class="footer">
-        Dibuat dengan 💖 oleh [Nama Anda] | © 2025 Aplikasi Keren
+        Dibuat dengan 💖 oleh John Doe | © 2025
     </div>
     """, 
     unsafe_allow_html=True
